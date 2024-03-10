@@ -23,7 +23,7 @@ RUN npm run build
 FROM httpd:alpine
 WORKDIR /usr/local/apache2/htdocs
 # Copy the production-ready Angular app to the Nginx webserver's root directory
-COPY --from=angular app/dist/rent-acar-front-end .
+COPY --from=angular app/dist/my-app .
 
 # Expose port 80
 #EXPOSE 80
