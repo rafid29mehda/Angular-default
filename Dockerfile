@@ -20,24 +20,24 @@ COPY . .
 RUN npm run build
 
 # Use a smaller, production-ready Nginx image as the final image
-#FROM nginx:alpine
+FROM nginx:alpine
 # WORKDIR /usr/local/apache2/htdocs
 # Copy the production-ready Angular app to the Nginx webserver's root directory
-#COPY --from=angular /app/dist /usr/share/nginx/html/my-app
-
-# Expose port 80
-#EXPOSE 80
-
-# Start Nginx
-#CMD ["nginx", "-g", "daemon off;"]
-
-FROM httpd:alpine
-
-# Copy the production-ready Angular app to the Apache web server's root directory
-COPY --from=angular /app/dist/ /usr/local/apache2/htdocs/
+COPY --from=angular /app/dist /usr/share/nginx/html/my-app
 
 # Expose port 80
 EXPOSE 80
 
+# Start Nginx
+#CMD ["nginx", "-g", "daemon off;"]
+
+#FROM httpd:alpine
+
+# Copy the production-ready Angular app to the Apache web server's root directory
+#COPY --from=angular /app/dist/ /usr/local/apache2/htdocs/
+
+# Expose port 80
+#EXPOSE 80
+
 # Start Apache HTTP Server
-CMD ["httpd", "-D", "FOREGROUND"]
+#CMD ["httpd", "-D", "FOREGROUND"]
